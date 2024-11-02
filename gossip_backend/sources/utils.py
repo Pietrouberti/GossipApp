@@ -7,17 +7,26 @@ def store_data(title, description):
     # You can add actual data storage logic here in the future
     return True
 
-# View to handle the send_data endpoint
-class SendDataView(views.APIView):
-    def post(self, request):
-        # Extract title and description from the incoming JSON payload
-        title = request.data.get('title')
-        description = request.data.get('description')
 
-        # Call the store_data function
-        if store_data(title, description):
-            # If storing data is successful, return a success status
-            return Response({'status': 'success'}, status=status.HTTP_200_OK)
-        else:
-            # If there was an error (in future logic), return an error status
-            return Response({'status': 'error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+# Embedding model
+import tensorflow_hub as hub
+
+def embed(text: str) -> np.ndarray:
+  """Embeds the given text using the Universal Sentence Encoder.
+
+  Args:
+    text: The text to embed.
+
+  Returns:
+    The embedding as a NumPy array.
+  """
+  model_use = hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
+  embedding = model_use([text])
+  return embedding[0]
+
+
+from .models import Sources
+
+def store(self, embedding: np.ndarray, text: str):
+    new_entry = Sources(embedding=embedding, text=text)
+    new_entry.save()
