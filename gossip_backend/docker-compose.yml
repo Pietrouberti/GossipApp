@@ -1,0 +1,27 @@
+# Use postgres/example user/password credentials
+version: '3.9'
+
+services:
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    environment:
+      POSTGRES_USER: django
+      POSTGRES_PASSWORD: django123
+      POSTGRES_DB: gossip_db
+    ports:
+      - 5432:5432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
