@@ -27,6 +27,6 @@ i have a link idk more than that https://www.postgresql.org/download/windows/
 ```bash
 docker compose up -d
 docker ps
-docker exec -it <docker id> psql -U django -d sources -c "CREATE EXTENSION IF NOT EXISTS vector;"
+docker exec -it <docker id> psql -U django -d gossip_db -c "CREATE EXTENSION IF NOT EXISTS vector;"
 ```
 
