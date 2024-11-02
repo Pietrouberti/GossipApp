@@ -8,7 +8,8 @@
             <RouterLink class="navbar__item" to="/about">About</RouterLink>
         </ul class="navbar__list">
         <div class="navbar__buttons">
-            <button class="navbar__button">Logout</button>
+            <button class="navbar__button"><RouterLink to="/login">Logout</RouterLink></button>
+            <button class="navbar__button"><RouterLink to="/login">Login</RouterLink></button>
         </div>
     </div>
 </template>

@@ -1,3 +1,64 @@
 @import 'base.scss';
 @import 'clientFacing/navbar';
 
+body {
+    background-color: white;
+}
+main {
+    width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+    .animation-circle{
+        width: 500px;
+        height: 500px;
+        position: absolute;
+        background-color: rgba(59, 16, 83, 0.217);
+        border-radius: 9999px;
+        z-index: 0;
+        &--1 {
+            top: 0;
+            left: 0;
+        }
+        &--2 {
+            top: 80%;
+            left: 80%;
+        }
+       
+    }
+}
+
+
+
+
+.header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &__title {
+        font-size: 80px;
+        color: rgb(60, 16, 83);
+        font-weight: bold;
+        text-align: center;
+    }
+    &__span {
+        font-size: 30px;
+        font-weight: bold;
+        color: rgb(60, 16, 83);
+
+        &--yellow {
+            color: rgb(234, 178, 34); 
+        }
+    }
+}
+

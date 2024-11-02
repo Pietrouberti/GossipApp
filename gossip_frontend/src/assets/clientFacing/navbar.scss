@@ -35,8 +35,13 @@
         cursor: pointer;
         background-color: rgb(234, 178, 34);
         color: rgb(60, 16, 83);
-        font-weight: bold;
         border-radius: 5px;
+
+        a {
+            color: rgb(60, 16, 83);
+            font-weight: bold;
+            text-decoration: none;
+        }
     }
 
 }
