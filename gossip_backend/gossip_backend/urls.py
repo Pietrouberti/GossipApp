@@ -16,8 +16,10 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from sources.views import SendDataView
 from django.urls import path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('api/send_data/', SendDataView.as_view(), name='send_data'),
 ]
