@@ -1,12 +1,7 @@
-# Import necessary packages
-from rest_framework.response import Response
-from rest_framework import status, views
-
 # Function to store data (currently just returns True)
-def store_data(title, description):
+def store_data(text: str):
     # You can add actual data storage logic here in the future
     return True
-
 
 # Embedding model
 import tensorflow_hub as hub
