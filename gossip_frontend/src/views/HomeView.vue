@@ -1,4 +1,9 @@
 <script setup>
+const data = {
+  name : 'Pietero',
+  message: 'ndkdnfd',
+}
+
 
 </script>
 
