@@ -60,18 +60,24 @@ def update_discussions(diss_id: int) -> int:
   discussion.save()
   return diss_id
   
-def create_discussion(collaborators: List[int], base_id=None):
-  if base_id is not None:
-    source = Sources.objects.get(source_id=base_id)
-    summary = summarize(source.text)
-    discussion = Discussion(base_id=base_id, summary=summary, summ_emb=embed(summary))
-    discussion.collaborators.set(collaborators)
-  else:
-    # no summ or embedding
-    discussion = Discussion(base_id=base_id)
-    discussion.collaborators.set(collaborators)
+from typing import List
 
-  return discussion.diss_id
+def create_discussion(collaborators: List[int], base_id=None):
+    if base_id is not None:
+        source = Sources.objects.get(source_id=base_id)
+        summary = summarize(source.text)
+        discussion = Discussion(base_id=source, summary=summary, summ_emb=embed(summary))
+    else:
+        # no summ or embedding
+        discussion = Discussion(base_id=None)
+    
+    # Save the discussion to the database to assign a primary key
+    discussion.save()
+    
+    # Now set the collaborators
+    discussion.collaborators.set(collaborators)
+    
+    return discussion.diss_id  # Optionally return the discussion object
   
 
 # ---------- Users ---------
