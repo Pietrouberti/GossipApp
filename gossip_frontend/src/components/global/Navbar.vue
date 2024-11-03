@@ -9,11 +9,18 @@
             <RouterLink class="navbar__item" to="/about">About Us</RouterLink>
         </ul class="navbar__list">
         <div class="navbar__buttons">
-            <button class="navbar__button"><RouterLink to="/login">Logout</RouterLink></button>
-            <button class="navbar__button"><RouterLink to="/login">Login</RouterLink></button>
+            <button class="navbar__button" v-if="userStore.user.isAuthenticated"><RouterLink to="/login" @click="removeToken()">Logout</RouterLink></button>
+            <button class="navbar__button" v-if="!userStore.user.isAuthenticated"><RouterLink to="/login">Login</RouterLink></button>
         </div>
     </div>
 </template>
 <script setup>
-    
+    import {useUserStore} from '@/stores/user.js';
+
+    const userStore = useUserStore();
+
+    const removeToken = () => {
+        userStore.removeToken();
+    }
+
 </script>
