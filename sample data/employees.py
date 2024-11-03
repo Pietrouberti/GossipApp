@@ -1,0 +1,22 @@
+employees = [
+    """Name: Alice Smith, Skills: Customer Support, Communication, Problem Solving, Job Title: Customer Support Specialist""",
+    """Name: Bob Johnson, Skills: Linux, System Administration, Network Security, Job Title: Systems Administrator""",
+    """Name: Carol Taylor, Skills: Regulatory Compliance, Risk Assessment, Analytical Skills, Job Title: Compliance Officer""",
+    """Name: David Brown, Skills: Financial Analysis, Data Interpretation, Excel, Job Title: Financial Analyst""",
+    """Name: Eve Wilson, Skills: Digital Marketing, SEO, Content Creation, Job Title: Digital Marketing Specialist""",
+    """Name: Frank Miller, Skills: Customer Support, Time Management, Product Knowledge, Job Title: Customer Support Specialist""",
+    """Name: Grace Davis, Skills: Employee Relations, Recruitment, Organisational Development, Job Title: Human Resources Manager""",
+    """Name: Henry Lee, Skills: JavaScript, Node.js, REST APIs, Job Title: Software Engineer""",
+    """Name: Isabel Scott, Skills: Risk Analysis, Data Visualisation, SQL, Job Title: Risk Analyst""",
+    """Name: Jack Martinez, Skills: Accounting, Financial Reporting, Budgeting, Job Title: Accountant""",
+    """Name: Karen Anderson, Skills: Team Leadership, Customer Service, Conflict Resolution, Job Title: Customer Support Manager""",
+    """Name: Leo Thomas, Skills: Network Infrastructure, Troubleshooting, Firewall Configuration, Job Title: Network Engineer""",
+    """Name: Mia White, Skills: Investment Strategies, Client Relations, Market Analysis, Job Title: Financial Advisor""",
+    """Name: Noah Harris, Skills: Risk Management, Crisis Management, Quantitative Analysis, Job Title: Risk Manager""",
+    """Name: Olivia Walker, Skills: Content Strategy, Social Media Marketing, Copywriting, Job Title: Content Strategist""",
+    """Name: Peter Hall, Skills: Policy Analysis, Compliance Monitoring, Ethics, Job Title: Compliance Analyst""",
+    """Name: Quinn Allen, Skills: Interviewing, Talent Acquisition, Applicant Tracking, Job Title: Recruitment Specialist""",
+    """Name: Rachel Young, Skills: Customer Service, Product Knowledge, Empathy, Job Title: Customer Support Specialist""",
+    """Name: Sam King, Skills: DevOps, CI/CD, Containerisation, Job Title: DevOps Engineer""",
+    """Name: Tina Wright, Skills: Investment Analysis, Portfolio Management, Risk Assessment, Job Title: Investment Analyst"""
+]
