@@ -1,6 +1,9 @@
 @import 'base.scss';
 @import 'clientFacing/navbar';
 @import 'clientFacing/login';
+@import 'clientFacing/kanban.scss';
+@import 'clientFacing/userinput.scss';
+
 
 body {
     background-color: white;
