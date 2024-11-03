@@ -16,7 +16,7 @@ class LoginView(views.APIView):
         user = authenticate(username=username, password=password)
         
         print(f"{username} - {password}")
-
+        
         if user is not None:
             # Generate or get the token for the authenticated user
             token, _ = Token.objects.get_or_create(user=user)
