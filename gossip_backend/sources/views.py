@@ -25,8 +25,8 @@ class LoginView(views.APIView):
 # Create new message endpoint
 class CreateMessageView(views.APIView):
 
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [TokenAuthentication]
+    # permission_classes = [IsAuthenticated]
 
     def post(self, request):
         
