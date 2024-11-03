@@ -28,10 +28,11 @@ class LoginView(views.APIView):
 # Define the view to list users
 class ListUsersView(generics.ListAPIView):
     
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+    
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     
 # Create new message endpoint
 class CreateMessageView(views.APIView):
