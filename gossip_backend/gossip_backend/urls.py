@@ -16,11 +16,12 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from sources.views import CreateDiscussionView, LoginView
+from sources.views import CreateMessageView, GetDiscussionsView, LoginView
 from django.urls import path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('api/create_discussion/', CreateDiscussionView.as_view(), name='send_data'),
+    path('api/create_message/', CreateMessageView.as_view(), name='send_data'),
+    path('api/get_discussions/', GetDiscussionsView.as_view(), name='send_data'),
     path('api/login/', LoginView.as_view(), name='login'),
 ]
