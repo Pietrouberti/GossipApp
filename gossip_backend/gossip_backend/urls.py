@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from sources.utils import SendDataView
+from sources.views import SendDataView
 from django.urls import path
 
 urlpatterns = [
