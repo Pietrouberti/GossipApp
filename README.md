@@ -3,6 +3,10 @@
 ### !! See the project overview in [Presentation.pdf](./Presentation.pdf) located in the root directory !!
 Get a brief explanation of the idea behind the project and the core technology involved.
 
+-----
+
+django | embeddings | pgvector | postgresql python | tensorflow | vue
+
 ![Gossip - Home Page](https://github.com/user-attachments/assets/6ee99baa-59ea-4db7-892f-bbfa73e4bf29)
 ![Gossip - Dashboard](https://github.com/user-attachments/assets/0c0eacdb-6322-4d8f-880a-02fd68376a13)
 
