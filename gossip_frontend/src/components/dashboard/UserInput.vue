@@ -23,7 +23,9 @@
                 </div>
                 <div class="userinput__entry">
                     <label for="">@collaborators</label>
-                    <textarea v-model="collaborators"></textarea>
+                    <select name="" id="" v-model="selectedUsername">
+                        <option value="user.username" v-for="user in users">{{user.username}}</option>
+                    </select>
                 </div>
             </div>
             <button class="submit">Search</button>
@@ -31,7 +33,7 @@
     </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import {useUserStore} from '@/stores/user.js';
 import axios from 'axios';
 const userStore = useUserStore()
@@ -40,16 +42,45 @@ const userInput = ref(null);
 const priority = ref(null);
 const collaborators = ref(null);
 const toggletooltip = ref(false)
+const users = ref(null);
+const selectedUsername = ref(null)
+
+
+onMounted(async() => {
+    await getUsers()
+    debugger;
+    getUserIdFromName('pietrou')
+})
+
+const getUsers = () => {
+    axios.get('http://localhost:8000/api/users').then(response => {
+        users.value = response.data
+        console.log(users.value)
+    })
+}
 
 const showToolbar = () => {
     toggletooltip.value = !toggletooltip.value
 }
 function splitStringBySpaces(inputString) {
-    return inputString.trim().split(/\s+/);
+    if (inputString != null) {
+        return inputString.trim().split(/\s+/);
+    }
+    else {
+        return null
+    }
+
 }
+
+const getUserIdFromName = () => {
+    const user = users.value.find(users => users.username === selectedUsername.value);
+    return user ? user.user_id : null;
+}
+
 
 const sendRequest = async () => {
     try {
+        id = getUserIdFromName(selectedUsername.value);
         let response = await axios.post(
             'http://localhost:8000/api/create_message/',
             {

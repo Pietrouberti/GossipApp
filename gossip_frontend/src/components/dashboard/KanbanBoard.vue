@@ -32,12 +32,13 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import axios from 'axios'
 
 const taskElements = ref([]);
 const globalPositionObject = ref([]);
 const draggedTask = ref(null); // To store the dragged task temporarily
 
-onMounted(() => {
+onMounted(async() => {
     taskElements.value.forEach(taskElement => {
         if (taskElement) {
             console.log(taskElement.getBoundingClientRect());
@@ -55,6 +56,7 @@ onMounted(() => {
     });
     console.log(globalPositionObject.value);
 });
+
 
 const data = ref([
     { id: 0, title: 'Ollie', desc: 'Helloooo mate', priority: 1 },

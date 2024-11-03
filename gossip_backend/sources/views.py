@@ -7,7 +7,7 @@ from rest_framework import generics
 from rest_framework import status, views
 from .utils import recieve_msg
 from .serializer import UserSerializer
-from .models import User
+from .models import Users
 
 # Create your views here.
 
@@ -28,21 +28,21 @@ class LoginView(views.APIView):
 # Define the view to list users
 class ListUsersView(generics.ListAPIView):
     
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [TokenAuthentication]
+    # permission_classes = [IsAuthenticated]
     
-    queryset = User.objects.all()
+    queryset = Users.objects.all()
     serializer_class = UserSerializer
     
 # Create new message endpoint
 class CreateMessageView(views.APIView):
 
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [TokenAuthentication]
+    # permission_classes = [IsAuthenticated]
 
     def post(self, request):
         
-        author_id = request.user.id
+        author_id = request.data.get('username')
         print("\n \n ", request.data)
         if 'discussion' in request.data:
             
