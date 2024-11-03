@@ -1,18 +1,60 @@
+
 .userinput {
     width: 100%;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     padding: 50px 0px;
+    gap: 15px;
 
+    &__form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    &__form-search {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__form-tooltip {
+        background-color: #3333;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        textarea {
+            resize: none;
+        }
+
+    }
+    .submit {
+        display: flex;
+        width: 100%;
+        height: 50px;
+        background-color: rgb(234, 178, 34);
+        color: rgb(60, 16, 83);
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__entry {
+        display: flex;
+        justify-content:space-between;
+        padding: 10px;
+    }
     &__input {
         height: 50px;
-        width: 300px;
+        width: 70vw;
+        font-size: 30px;
         border-radius: 5px;
         border: 1px solid rgb(60, 16, 83);
     }
     &__submit {
         height: 50px;
+        width: 50px;
         border-radius: 5px;
         border: 1px solid rgb(60, 16, 83);
     }

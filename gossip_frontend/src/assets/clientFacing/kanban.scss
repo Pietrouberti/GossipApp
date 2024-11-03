@@ -1,7 +1,15 @@
+.kanban-intro {
+    padding: 20px;
+    &__title {
+        text-align: center;
+    }
+}
 .kanban {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    padding-left: 60px;
+    padding-right: 60px;
     max-width: 100%;
     &__row {
         flex: 1 1 auto;
@@ -13,6 +21,7 @@
         flex-direction: column;
         gap: 10px;
         padding: 10px;
+        max-width: 33%;
     }
     &__task {
         width: 100%;

@@ -1,6 +1,10 @@
 <template>
-    <h1>Kanban</h1>
-
+    
+    <div class="kanban-intro">
+        <h1 class="kanban-intro__title">
+            Your Kanban Board
+        </h1>
+    </div>
     <div class="kanban">
         <div 
             class="kanban__row" 
@@ -58,6 +62,14 @@ const data = ref([
     { id: 2, title: 'Ellis', desc: 'Ohhhhdknfn dljkfnsdklnfsdknfkldsnf nd k.fsd', priority: 1 },
     { id: 3, title: 'Pietro', desc: 'nfdksnfsdnk i ndfknsdfnsd n', priority: 3 }
 ]);
+
+const sendDisscusion  = () => {
+    let response = axios.post('/api/createmessage')
+}
+
+const getDiscusstion = () => {
+    axios.get('/api/getmessages')
+}
 
 const lowestPriority = ref(3);
 
