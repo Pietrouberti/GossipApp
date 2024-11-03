@@ -7,5 +7,12 @@ class Sources(models.Model):
     # The text field to hold your text data
     text = models.TextField()  
 
+    author = VectorField(dimensions=512)     # Embedding for the author
+    created = models.DateTimeField(auto_now_add=True)  # Auto timestamp on creation
+
     def __str__(self):
         return self.text_data  # or however you want to represent the object
+
+# Discussion
+# - members
+# - list of messages (sources)
