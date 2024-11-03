@@ -6,9 +6,9 @@ class Users(models.Model):
     user_id = models.AutoField(primary_key=True)
     username = models.TextField()
     # Summary of the user
-    summary = models.TextField()
+    summary = models.TextField(null=True, blank=True)
     # Embedding of the summary
-    summ_emb = VectorField(dimensions=512)
+    summ_emb = VectorField(dimensions=512, null=True, blank=True)
 
 
 class Sources(models.Model):
