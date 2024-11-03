@@ -4,8 +4,7 @@ from django.contrib.auth.models import User
 
 class Users(models.Model):
     user_id = models.AutoField(primary_key=True)
-    # delete user delete everything else
-    django_id = models.ForeignKey(User, on_delete=models.CASCADE) 
+    username = models.TextField()
     # Summary of the user
     summary = models.TextField()
     # Embedding of the summary
