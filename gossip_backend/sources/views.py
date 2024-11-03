@@ -34,6 +34,31 @@ class ListUsersView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     
+class GetSourcesUserIDView(views.APIView):
+    
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
+    def request(self, request):
+        django_username = request.user.username
+        
+        try:
+            # Find the user in Django's User model
+            user = User.objects.get(username=django_username)
+            user_id = user.id
+
+            # Return the user ID in the response
+            return Response(
+                {'user_id': user_id},
+                status=status.HTTP_200_OK
+            )
+        except User.DoesNotExist:
+            # Handle the case where the user is not found
+            return Response(
+                {'error': 'User not found.'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        
 # Create new message endpoint
 class CreateMessageView(views.APIView):
 
