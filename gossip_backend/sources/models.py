@@ -1,18 +1,34 @@
 from django.db import models
 from pgvector.django import VectorField
+from django.contrib.auth.models import User
+
+class Users(models.Model):
+    user_id = models.AutoField(primary_key=True)
+    # delete user delete everything else
+    django_id = models.ForeignKey(User, on_delete=models.CASCADE) 
+    # Summary of the user
+    summary = models.TextField()
+    # Embedding of the summary
+    summ_emb = VectorField(dimensions=512)
+
 
 class Sources(models.Model):
     # The vector field to hold your vector embeddings
-    embedding = VectorField(dimensions=512)  # Set the appropriate dimensions for your use case
     # The text field to hold your text data
+    source_id = models.AutoField(primary_key=True)
+    # The related_name="sources" option allows you to access all Sources in a Discussion via discussion.sources.
+    embedding = VectorField(dimensions=512)
     text = models.TextField()  
-
-    author = VectorField(dimensions=512)     # Embedding for the author
+    author = models.ForeignKey(Users, on_delete=models.CASCADE, null=True, blank=True)  # Allow NULL
+    diss_id = models.ForeignKey('Discussion', on_delete=models.CASCADE, related_name="sources")
     created = models.DateTimeField(auto_now_add=True)  # Auto timestamp on creation
 
-    def __str__(self):
-        return self.text_data  # or however you want to represent the object
+class Discussion(models.Model):
+    diss_id = models.AutoField(primary_key=True)
+    base_id = models.ForeignKey(Sources, on_delete=models.CASCADE, null=True, blank=True)
+    # sources is made implicitly by the related name before
 
-# Discussion
-# - members
-# - list of messages (sources)
+    summary = models.TextField(null=True, blank=True)
+    # embedding of the summary
+    summ_emb = VectorField(dimensions=512, null=True, blank=True)
+    collaborators = models.ManyToManyField(User)
