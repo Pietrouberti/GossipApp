@@ -67,9 +67,7 @@ const sendDisscusion  = () => {
     let response = axios.post('/api/createmessage')
 }
 
-const getDiscusstion = () => {
-    axios.get('/api/getmessages')
-}
+
 
 const lowestPriority = ref(3);
 
