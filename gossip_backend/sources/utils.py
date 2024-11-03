@@ -5,7 +5,6 @@ from .models import Sources
 from typing import List
 from pgvector.django import L2Distance
 
-
 model_use = hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
 def embed(text: str) -> np.ndarray:
   """Embeds the given text using the Universal Sentence Encoder.
@@ -45,3 +44,5 @@ def query(query: str, n: int) -> List[Sources]:
     results = get_similar(query_embedding , n)
     return [source for source in results if not np.array_equal(query_embedding, source.embedding)]
             
+def create_discussion(text: str):
+    return True
