@@ -48,19 +48,28 @@ function splitStringBySpaces(inputString) {
     return inputString.trim().split(/\s+/);
 }
 
-const sendRequest  = async() => {
-    let response = axios.post('http://localhost:8000/api/create_message/', {
-        headers: {
-            'Authorization' : 'token ' + userStore.user.token,
-            'Content-Type' : 'application/json'
-        },
-        text: userInput.value,
-        priority: priority.value,
-        collaborators: splitStringBySpaces(collaborators.value),
-    } )
-
-    return response;
-}
+const sendRequest = async () => {
+    try {
+        let response = await axios.post(
+            'http://localhost:8000/api/create_message/',
+            {
+                text: userInput.value,
+                priority: priority.value,
+                collaborators: splitStringBySpaces(collaborators.value),
+            },
+            {
+                headers: {
+                    'Authorization': 'Token ' + userStore.user.token,
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+        return response;
+    } catch (error) {
+        console.error("Error in Axios request:", error);
+        throw error;
+    }
+};
 
 const submitForm = async() => {
     let response = await sendRequest();

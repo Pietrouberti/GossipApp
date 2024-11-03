@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
 from rest_framework import status, views
-from .utils import receive_msg
+from .utils import recieve_msg
 
 # Create your views here.
 
@@ -31,13 +31,13 @@ class CreateMessageView(views.APIView):
     def post(self, request):
         
         author_id = request.user.id
-        
+        print("\n \n ", request.data)
         if 'discussion' in request.data:
             
             discussion_id = request.data.get('discussion')
             text = request.data.get('text')
             
-            if receive_msg(text=text, author_id=author_id, discussion_id=discussion_id):
+            if recieve_msg(text=text, user_id=author_id, discussion_id=discussion_id):
                 return Response({'status': 'success'}, status=status.HTTP_200_OK)
             else:
                 return Response({'status': 'error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -47,7 +47,7 @@ class CreateMessageView(views.APIView):
             collaborators = request.data.get('collaborators')
             text = request.data.get('text')
             
-            if receive_msg(text=text, author_id=author_id, collaborators=collaborators):
+            if recieve_msg(text=text, user_id=author_id, collaborators=collaborators):
                 return Response({'status': 'success'}, status=status.HTTP_200_OK)
             else:
                 return Response({'status': 'error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

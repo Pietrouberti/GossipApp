@@ -5,6 +5,9 @@ from .models import Sources, Users, Discussion
 from typing import List
 from pgvector.django import L2Distance
 
+''' Hitting endpoint CreateMessageView with payload
+{'text': 'fsdf', 'priority': '2', 'collaborators': ['fsdfsd']}'''
+
 model_use = hub.load("https://tfhub.dev/google/universal-sentence-encoder/4")
 def embed(text: str) -> np.ndarray:
     """Embeds the given text using the Universal Sentence Encoder.
@@ -51,7 +54,7 @@ def summarize(text: str) -> str:
 
 def update_discussions(diss_id: int) -> int:
   discussion = Discussion.objects.get(diss_id=diss_id)
-  sources = discission.sources
+  sources = discussion.sources
   history = " ".join(source.text for source in sources)
   discussion.summary = summarize(history)
   discussion.save()
@@ -61,10 +64,12 @@ def create_discussion(collaborators: List[int], base_id=None):
   if base_id is not None:
     source = Sources.objects.get(source_id=base_id)
     summary = summarize(source.text)
-    discussion = Discussion(base_id=base_id, summary=summary, summ_emb=embed(summary), collaborators=collaborators)
+    discussion = Discussion(base_id=base_id, summary=summary, summ_emb=embed(summary))
+    discussion.collaborators.set(collaborators)
   else:
     # no summ or embedding
-    discussion = Discussion(base_id=base_id, collaborators=collaborators)
+    discussion = Discussion(base_id=base_id)
+    discussion.collaborators.set(collaborators)
 
   return discussion.diss_id
   
