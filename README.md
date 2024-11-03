@@ -1,7 +1,13 @@
-# GossipApp
+# Gossip - Reimagining Internal Company Communication
 
-## how to run backend
-### install python dependencies
+### !! See the project overview [Presentation.pdf](./Presentation.pdf) in the root directory !!
+Get a brief explanation of the idea behind the project and the core technology involved.
+
+![Gossip - Home Page](https://github.com/user-attachments/assets/6ee99baa-59ea-4db7-892f-bbfa73e4bf29)
+![Gossip - Dashboard](https://github.com/user-attachments/assets/0c0eacdb-6322-4d8f-880a-02fd68376a13)
+
+## Local deployment
+
 #### Make the python environment
 ```bash
 python3 -m venv venv
@@ -21,7 +27,7 @@ brew services start postgresql
 psql -d postgres -c "CREATE EXTENSION IF NOT EXISTS vector;"
 ```
 #### Windows
-i have a link idk more than that https://www.postgresql.org/download/windows/
+https://www.postgresql.org/download/windows/
 
 ### Create the database
 ```bash
