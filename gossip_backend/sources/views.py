@@ -3,8 +3,11 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.response import Response
+from rest_framework import generics
 from rest_framework import status, views
 from .utils import recieve_msg
+from .serializer import UserSerializer
+from .models import User
 
 # Create your views here.
 
@@ -21,7 +24,15 @@ class LoginView(views.APIView):
             return Response({'token': token.key}, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
-
+        
+# Define the view to list users
+class ListUsersView(generics.ListAPIView):
+    
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
 # Create new message endpoint
 class CreateMessageView(views.APIView):
 

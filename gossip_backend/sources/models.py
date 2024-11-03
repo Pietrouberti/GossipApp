@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Users(models.Model):
     user_id = models.AutoField(primary_key=True)
+    username = models.TextField()
     # delete user delete everything else
     django_id = models.ForeignKey(User, on_delete=models.CASCADE) 
     # Summary of the user
