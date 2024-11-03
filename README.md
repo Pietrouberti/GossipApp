@@ -1,6 +1,6 @@
 # Gossip - Reimagining Internal Company Communication
 
-### !! See the project overview [Presentation.pdf](./Presentation.pdf) in the root directory !!
+### !! See the project overview in [Presentation.pdf](./Presentation.pdf) located in the root directory !!
 Get a brief explanation of the idea behind the project and the core technology involved.
 
 ![Gossip - Home Page](https://github.com/user-attachments/assets/6ee99baa-59ea-4db7-892f-bbfa73e4bf29)
