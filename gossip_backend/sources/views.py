@@ -6,8 +6,8 @@ from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework import status, views
 from .utils import recieve_msg
-from .serializer import UserSerializer
-from .models import Users
+from .serializer import UserSerializer, DiscussionSerializer, SourcesSerializer
+from .models import Users, Discussion
 
 # Create your views here.
 
@@ -24,7 +24,28 @@ class LoginView(views.APIView):
             return Response({'token': token.key}, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
-        
+
+class DiscussionSummariesView(views.APIView):
+    def get(self, request):
+        try: 
+            discussions = Discussion.objects.all()
+            serializer = DiscussionSerializer(discussions, many=True)
+        except Discussion.DoesNotExist:
+            return Response({'error':'Discussion not found'})
+        return Response(serializer.data)
+
+class DiscussionSourcesView(views.APIView):
+    def get(self, request, diss_id):
+        try:
+            discussion = Discussion.objects.get(diss_id=diss_id)
+        except Discussion.DoesNotExist:
+            return Response({'error': 'Discussion not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        sources = discussion.sources.all().order_by('created')
+        serializer = SourcesSerializer(sources, many=True)
+        return Response(serializer.data)
+
+
 # Define the view to list users
 class ListUsersView(generics.ListAPIView):
     
@@ -39,20 +60,20 @@ class GetSourcesUserIDView(views.APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
     
-    def request(self, request):
+    def get(self, request):
         django_username = request.user.username
         
         try:
             # Find the user in Django's User model
-            user = User.objects.get(username=django_username)
-            user_id = user.id
+            user = Users.objects.get(username=django_username)
+            user_id = user.user_id
 
             # Return the user ID in the response
             return Response(
                 {'user_id': user_id},
                 status=status.HTTP_200_OK
             )
-        except User.DoesNotExist:
+        except Users.DoesNotExist:
             # Handle the case where the user is not found
             return Response(
                 {'error': 'User not found.'},

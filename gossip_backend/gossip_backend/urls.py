@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from sources.views import CreateMessageView, GetDiscussionsView, LoginView, ListUsersView, GetSourcesUserIDView
+from sources.views import CreateMessageView, GetDiscussionsView, LoginView, ListUsersView, GetSourcesUserIDView, DiscussionSummariesView, DiscussionSourcesView
 from django.urls import path
 
 urlpatterns = [
@@ -26,4 +26,6 @@ urlpatterns = [
     path('api/get_sources_user_id/', GetSourcesUserIDView.as_view(), name='send_id'),
     path('api/users/', ListUsersView.as_view(), name='list-users'),
     path('api/login/', LoginView.as_view(), name='login'),
+    path('api/discussions/', DiscussionSummariesView.as_view(), name='discussion-summaries'),
+    path('api/discussions/<int:diss_id>/sources/', DiscussionSourcesView.as_view(), name='discussion-sources'),
 ]

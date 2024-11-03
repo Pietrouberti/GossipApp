@@ -16,18 +16,18 @@ class Sources(models.Model):
     # The text field to hold your text data
     source_id = models.AutoField(primary_key=True)
     # The related_name="sources" option allows you to access all Sources in a Discussion via discussion.sources.
-    embedding = VectorField(dimensions=512)
-    text = models.TextField()  
+    embedding = VectorField(dimensions=512,  null=True, blank=True)
+    text = models.TextField( null=True, blank=True)  
     author = models.ForeignKey(Users, on_delete=models.CASCADE, null=True, blank=True)  # Allow NULL
     diss_id = models.ForeignKey('Discussion', on_delete=models.CASCADE, related_name="sources")
     created = models.DateTimeField(auto_now_add=True)  # Auto timestamp on creation
 
 class Discussion(models.Model):
     diss_id = models.AutoField(primary_key=True)
-    base_id = models.ForeignKey(Sources, on_delete=models.CASCADE, null=True, blank=True)
     # sources is made implicitly by the related name before
 
     summary = models.TextField(null=True, blank=True)
     # embedding of the summary
+    
     summ_emb = VectorField(dimensions=512, null=True, blank=True)
-    collaborators = models.ManyToManyField(User)
+    collaborators = models.ManyToManyField(User,  null=True, blank=True)
