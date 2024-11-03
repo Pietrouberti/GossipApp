@@ -30,4 +30,4 @@ class Discussion(models.Model):
     summary = models.TextField(null=True, blank=True)
     # embedding of the summary
     summ_emb = VectorField(dimensions=512, null=True, blank=True)
-    collaborators = models.ManyToManyField(User)
+    collaborators = models.ManyToManyField(Users)

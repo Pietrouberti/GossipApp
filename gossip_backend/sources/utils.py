@@ -36,6 +36,12 @@ def recieve_msg(text: str, user_id:int, diss_id=None, collaborators=None) -> int
       pass
 
     return diss_id
+
+# -------- Users ----------
+def create_user(name: str, desc: str):
+  user = Users(username=name, summary=desc, summ_emb=embed(desc))
+  user.save()
+  return user.user_id
     
 # --------- LLM -------------
 
@@ -48,15 +54,15 @@ def is_relevant(text: str, diss_id: int) -> bool:
 def summarize(text: str) -> str:
   # AI magic
   # TODO: OLI your job
-  return sum
+  return text
 
 # ---------- Discussions ---
 
 def update_discussions(diss_id: int) -> int:
   discussion = Discussion.objects.get(diss_id=diss_id)
-  sources = discussion.sources
-  history = " ".join(source.text for source in sources)
+  history = " ".join(source.text for source in discussion.sources.all())
   discussion.summary = summarize(history)
+  discussion.summ_emb = embed(history)
   discussion.save()
   return diss_id
   
@@ -75,6 +81,7 @@ def create_discussion(collaborators: List[int], base_id=None):
     discussion.save()
     
     # Now set the collaborators
+    print("COLLABS" , collaborators)
     discussion.collaborators.set(collaborators)
     
     return discussion.diss_id  # Optionally return the discussion object
@@ -121,12 +128,17 @@ def create_source(text:str, user_id: int, diss_id=None, collaborators=None):
     elif collaborators is not None:
       # create a discussion
       diss_id = create_discussion(collaborators)
+      print("Created disc id:", diss_id)
 
       # store the source with its diss id
       source_id = store_source(embed(text), text, diss_id, user_id)
 
+      disc = Discussion.objects.get(diss_id=diss_id)
+      disc.base_id_id = Sources.objects.get(source_id=source_id)
+
       # update the discussion
       update_discussions(diss_id)
+      print("Updated disc", diss_id)
 
     else:
       print("no collaborators or id")
