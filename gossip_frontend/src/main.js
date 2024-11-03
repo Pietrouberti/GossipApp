@@ -1,14 +1,24 @@
-import './assets/main.scss'
+import './assets/main.scss';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+// Import specific icons
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { createApp } from 'vue';
+import { createPinia } from 'pinia';
 
-import App from './App.vue'
-import router from './router'
+import App from './App.vue';
+import router from './router';
 
-const app = createApp(App)
+// Add Font Awesome icons to the library
+import { faUser, faCoffee } from '@fortawesome/free-solid-svg-icons';
+library.add(faUser, faCoffee);
 
-app.use(createPinia())
-app.use(router)
+const app = createApp(App);
 
-app.mount('#app')
+// Register FontAwesomeIcon component globally
+app.component('font-awesome-icon', FontAwesomeIcon);
+
+app.use(createPinia());
+app.use(router);
+
+app.mount('#app');

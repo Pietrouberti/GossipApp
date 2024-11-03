@@ -5,10 +5,12 @@
         </div>
         <ul class="navbar__list">
             <RouterLink class="navbar__item" to="/">Home</RouterLink>
-            <RouterLink class="navbar__item" to="/about">About</RouterLink>
+            <RouterLink class="navbar__item" to="/dashboard">Dashboard</RouterLink>
+            <RouterLink class="navbar__item" to="/about">About Us</RouterLink>
         </ul class="navbar__list">
         <div class="navbar__buttons">
-            <button class="navbar__button">Logout</button>
+            <button class="navbar__button"><RouterLink to="/login">Logout</RouterLink></button>
+            <button class="navbar__button"><RouterLink to="/login">Login</RouterLink></button>
         </div>
     </div>
 </template>
