@@ -1,4 +1,5 @@
-# Gossip - Reimagining Internal Company Communication
+# DurHack 2024
+## Gossip - Reimagining Internal Company Communication
 
 ### !! See the project overview in [Presentation.pdf](./Presentation.pdf) located in the root directory !!
 Get a brief explanation of the idea behind the project and the core technology involved.
